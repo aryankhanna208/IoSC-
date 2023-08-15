@@ -24,26 +24,38 @@ class WriteByAdminOnlyPermission(BasePermission):
         
         return False
 
-class showEvents(APIView):
-     def get(self, request):
-        events = Events.objects.all() 
-        serializer = EventsSerializer(events, many=True)  
+# class showEvents(APIView):
+#      def get(self, request):
+#         events = Events.objects.all() 
+#         serializer = EventsSerializer(events, many=True)  
 
-        return Response (serializer.data)
-class showProjects(APIView):
-     def get(self, request):
-        projects = Projects.objects.all() 
-        serializer = ProjectsSerializer(projects, many=True)  
+#         return Response (serializer.data)
+# class showProjects(APIView):
+#      def get(self, request):
+#         projects = Projects.objects.all() 
+#         serializer = ProjectsSerializer(projects, many=True)  
 
-        return Response (serializer.data)
+#         return Response (serializer.data)
      
-class showBlogs(APIView):
-     def get(self, request):
-        blogs = Blog.objects.all() 
-        serializer = BlogSerializer(blogs, many=True)  
+# class showBlogs(APIView):
+#      def get(self, request):
+#         blogs = Blog.objects.all() 
+#         serializer = BlogSerializer(blogs, many=True)  
 
-        return Response (serializer.data)
+#         return Response (serializer.data)
      
+class Projects_view(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [BasicAuthentication]  # Use appropriate authentication classes
+    permission_classes = [WriteByAdminOnlyPermission]  # Use IsAuthenticated permission
+    serializer_class = ProjectsSerializer
+    queryset = Projects.objects.all()
+
+class Blogs_view(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [BasicAuthentication]  # Use appropriate authentication classes
+    permission_classes = [WriteByAdminOnlyPermission]  # Use IsAuthenticated permission
+    serializer_class = BlogSerializer
+    queryset = Blog.objects.all()
+
 
 class Event(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [BasicAuthentication]  # Use appropriate authentication classes
