@@ -32,8 +32,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     college = models.TextField(max_length=255, null=False)
     enrollment_no = models.BigIntegerField(
         validators=[
-            MaxValueValidator(9999999999),  # Adjust the maximum value as needed
-            MinValueValidator(1000000000),  # Adjust the minimum value as needed
+            MaxValueValidator(99999999999),  # Adjust the maximum value as needed
+            MinValueValidator(10000000000),  # Adjust the minimum value as needed
         ],
         unique=True,  # Optional, if enrollment numbers should be unique
     )
