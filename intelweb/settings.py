@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-b79@5v**g2933j6+vubu-dz1(1g0ti00dojco4e^w0cziiam@l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,9 +84,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'intel',
-        'USER': 'postgres',
-        'PASSWORD' : 'Avinash123',
-        'HOST': 'localhost'
+        'USER': 't',
+        'PASSWORD' : ")@>P]H',Pve'7\"P",
+        'HOST': 'testing-123.postgres.database.azure.com',
+        'PORT' : '5432',
     }
 }
 
@@ -196,5 +197,3 @@ REST_FRAMEWORK = {
 # EMAIL_HOST_USER = 'intel.usar@gmail.com'
 # EMAIL_HOST_PASSWORD = 'cooziksyabayyjnxS'
 # EMAIL_USE_TLS = True
-
-ALLOWED_HOSTS=['192.168.1.9','localhost','127.0.0.1']
