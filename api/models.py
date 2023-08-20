@@ -30,13 +30,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     first_name = models.TextField(max_length=255, null=False)
     last_name = models.TextField(max_length=255, null= False)
     college = models.TextField(max_length=255, null=False)
-    enrollment_no = models.BigIntegerField(
-        validators=[
-            MaxValueValidator(99999999999),  # Adjust the maximum value as needed
-            MinValueValidator(10000000000),  # Adjust the minimum value as needed
-        ],
-        unique=True,  # Optional, if enrollment numbers should be unique
-    )
+    enrollment_no = models.BigIntegerField(unique=True)
     branch = models.TextField(max_length=255)
     profile_pic = models.ImageField(blank=True,upload_to='profiles', default='default.jpeg')
     is_active = models.BooleanField(default=True)
