@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+   
 ]
 
 ROOT_URLCONF = 'intelweb.urls'
@@ -143,7 +144,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS=[
     'http://localhost:8000',
-    'http://localhost:3000'
+    'http://localhost:3000',
+]
+CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_METHODS = [
+    'POST',
+    'GET',
 ]
 AUTH_USER_MODEL = "api.User"
 
@@ -160,33 +166,35 @@ REST_FRAMEWORK = {
     ),
 }
 
-SIMPLE_JWT = {
-   'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
-   'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
-   'ROTATE_REFRESH_TOKENS': True,
-   'BLACKLIST_AFTER_ROTATION': True,
-   'AUTH_HEADER_TYPES': ('JWT',),
-}
+# SIMPLE_JWT = {
+#    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+#    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+#    'ROTATE_REFRESH_TOKENS': True,
+#    'BLACKLIST_AFTER_ROTATION': True,
+#    'AUTH_HEADER_TYPES': ('JWT',),
+# }
 
-DJOSER = {
-    'LOGIN_FIELD':'email',
-    'USER_CREATE_PASSWORD_RETYPE':True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
-    'SEND_CONFIRMATION_EMAIL':True,
-    'SET_PASSWORD_RETYPE':True,
-    'PASSWORD_RESET_CONFIRM_URL':'#/password_reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL':'#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL':True,
-    'SERIALIZERS': {
-        'user_create':'api.serializers.UserCreateSerializer',
-        'user':'api.serializers.UserCreateSerializer',
-        'user_delete':'djoser.serializers.UserDeleteSerializer',
-    },
-}
+# DJOSER = {
+#     'LOGIN_FIELD':'email',
+#     'USER_CREATE_PASSWORD_RETYPE':True,
+#     'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+#     'SEND_CONFIRMATION_EMAIL':True,
+#     'SET_PASSWORD_RETYPE':True,
+#     'PASSWORD_RESET_CONFIRM_URL':'#/password_reset/confirm/{uid}/{token}',
+#     'ACTIVATION_URL':'#/activate/{uid}/{token}',
+#     'SEND_ACTIVATION_EMAIL':True,
+#     'SERIALIZERS': {
+#         'user_create':'api.serializers.UserCreateSerializer',
+#         'user':'api.serializers.UserCreateSerializer',
+#         'user_delete':'djoser.serializers.UserDeleteSerializer',
+#     },
+# }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   
-EMAIL_HOST= 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'intel.usar@gmail.com'
-EMAIL_HOST_PASSWORD = 'cooziksyabayyjnxS'
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   
+# EMAIL_HOST= 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'intel.usar@gmail.com'
+# EMAIL_HOST_PASSWORD = 'cooziksyabayyjnxS'
+# EMAIL_USE_TLS = True
+
+ALLOWED_HOSTS=['192.168.1.9','localhost','127.0.0.1']

@@ -8,7 +8,7 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated,IsAdminUser, BasePermission
 from rest_framework.authentication import TokenAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.views import APIView
+from rest_framework.views import APIView 
 from rest_framework.authentication import BasicAuthentication
 
 
@@ -43,7 +43,15 @@ class WriteByAdminOnlyPermission(BasePermission):
 #         serializer = BlogSerializer(blogs, many=True)  
 
 #         return Response (serializer.data)
-     
+
+class Userviewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserCreateSerializer
+
+# class User_view(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = UserCreateSerializer  # Set the serializer class here
+#     queryset = User.objects.all()
+
 class Projects_view(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [BasicAuthentication]  # Use appropriate authentication classes
     permission_classes = [WriteByAdminOnlyPermission]  # Use IsAuthenticated permission
@@ -55,7 +63,6 @@ class Blogs_view(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVi
     permission_classes = [WriteByAdminOnlyPermission]  # Use IsAuthenticated permission
     serializer_class = BlogSerializer
     queryset = Blog.objects.all()
-
 
 class Event(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [BasicAuthentication]  # Use appropriate authentication classes

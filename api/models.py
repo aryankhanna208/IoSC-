@@ -1,4 +1,3 @@
-from typing import Any
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -38,7 +37,7 @@ class User(AbstractBaseUser,PermissionsMixin):
         ],
         unique=True,  # Optional, if enrollment numbers should be unique
     )
-    program = models.TextField(max_length=255)
+    branch = models.TextField(max_length=255)
     profile_pic = models.ImageField(blank=True,upload_to='profiles', default='default.jpeg')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
